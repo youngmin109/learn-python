@@ -9,12 +9,15 @@ y_train = [val * np.random.rand() * 5 for val in x_train]
 # y를 Lable 로 표기 
 
 w = 0.0
+b = 0.0
 learning_rate = 0.001
 
 epoch = 50
 # BGC 배치경사하강법을 이용하여 선형회귀를 적용
 # zip의 역할은 x,y 값을 묶어 2차원 형태로 만듬
 # 하지만 개수가 맞지 않을경우 작은거에 맞춤
+
+# H(x) -> w * x + b
 for num_of_epoch in range(epoch):
     gradient_sum = 0.0
     for x, y in zip(x_train, y_train):
@@ -23,8 +26,9 @@ for num_of_epoch in range(epoch):
         
     # W 값 업데이트 
     # W = W - Learning_rate * gradient_sum
-    w = w - learning_rate * (gradient_sum / len(x_train))
-
+    w = w - learning_rate * (gradient_w_sum / len(x_train))
+    b = b - learning_rate * (gradient_b_sum / len(x_train))
+    
 print(x_train)
 print("-" * 100)
 print(y_train)
